@@ -1,0 +1,19 @@
+public class arrayOperations {
+    public static void main(String[] args) {
+        int[] arr = {1, 16, 34, 3, 88, 34, 8, 11, 77, 2};
+        int length=0;
+        int max=arr[arr.length-1];
+        arr[length++]=max;
+        int i=arr.length-2;
+        while(i>=0) {
+                if(arr[i]>max){
+                    arr[length++]=arr[i];
+                    max=arr[i];
+                }
+                i--;
+            }
+            for (int n=length-1;n>=0;n--) {
+                System.out.println(arr[n]);
+            }
+        }
+    }
