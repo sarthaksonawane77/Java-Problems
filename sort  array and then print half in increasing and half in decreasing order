@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the size");
+        int size=scanner.nextInt();
+        int[] arr=new int[size];
+        int x=0;
+        while(x<size){
+                    System.out.println("Enter the element");
+                    arr[x]=scanner.nextInt();
+                    x++;
+        }
+        int temp=0;
+        for(int i=0;i<arr.length;i++){
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[i]>arr[j]){
+                    temp=arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+        int i =0;
+        while(i<arr.length/2){
+             System.out.println(arr[i]);
+             i++;
+        }
+        int j=arr.length-1; 
+       while(j>=(arr.length)/2){
+            System.out.println(arr[j]);
+            j--;
+       }
+    }
+}
