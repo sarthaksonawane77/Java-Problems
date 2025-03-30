@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Size");
+        int size = scanner.nextInt();
+        int[] a = new int[size];
+        
+        for(int i=0;i<size;i++){
+            System.out.println("Enter element");
+            a[i] = scanner.nextInt();
+        }
+        int posIndex=0;
+        int negIndex=1;
+        int temp;
+        
+        while(posIndex<size && negIndex<size){
+            while(posIndex<size && a[posIndex]>=0 ){
+                posIndex+=2;
+            }
+            while(negIndex<size && a[negIndex]<=0 ){
+                negIndex+=2;
+            }
+            if(posIndex<size && negIndex<size){
+                temp = a[posIndex];
+                a[posIndex] = a[negIndex];
+                a[negIndex] = temp;
+            }
+            
+        }
+        System.out.println(" "); 
+        for(int i=0;i<size;i++){
+            System.out.println(a[i]);
+        }
+    }
+}
