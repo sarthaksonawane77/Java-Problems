@@ -5,7 +5,7 @@ public class MyClass {
     System.out.println("Enter year");
     int year = scanner.nextInt();
     
-    if((year%4==0&&year%100==0)||year%400==0){
+    if((year%4==0&&year%100!=0)||year%400==0){
             System.out.println("leap year");
         }else{
             System.out.println("Not a Leap Year");
