@@ -1,0 +1,25 @@
+public class practice {
+    public static void main(String[] args) {
+        Scanner scanner =new Scanner(System.in);
+        System.out.println("Enter Array Size");
+        int size= scanner.nextInt();
+        int[] arr= new int[size];
+        System.out.println("Enter array elements");
+        for(int i=0;i<size;i++){
+            arr[i]= scanner.nextInt();
+        }
+        int count1=0;
+        int count2=0;
+        for(int i=0;i<size;i++){
+            if(arr[i]==0)continue;
+           if(arr[i]%2==0){
+               count1++;
+           } else  {
+               count2++;
+           }
+        }
+        System.out.println("total even numbers"+ count1);
+        System.out.println("total odd numbers"+ count2);
+    }
+}
+
