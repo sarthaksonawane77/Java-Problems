@@ -1,0 +1,22 @@
+public class practice {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Array Size");
+        int size = scanner.nextInt();
+        int[] arr = new int[size];
+        int pos=0;
+        int neg=0;
+        int zero=0;
+        System.out.println("Enter array elements");
+        for (int j = 0; j < size; j++) {
+            arr[j] = scanner.nextInt();
+            if(arr[j]>0)pos++;
+            else if (arr[j]<0)neg++;
+            else zero++;
+        }
+
+        System.out.println("positive ="+pos);
+        System.out.println("Negative ="+neg);
+        System.out.println("Zero ="+zero);
+    }
+}
