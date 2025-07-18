@@ -1,0 +1,66 @@
+public class practice {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Size of First Array");
+        int size = scanner.nextInt();
+        int[] arr = new int[size];
+        System.out.println("Enter Elements of first Array");
+        for (int j = 0; j < size; j++) {
+            arr[j] = scanner.nextInt();
+        }
+
+
+        System.out.println("Enter value of rotation and direction with sign");
+        int k= scanner.nextInt();
+        int x=k;
+        if(k<0){
+        k=k-2*k;}
+
+        k=k%size;
+        //reversing array
+        for(int i=0;i<size/2;i++){
+            int temp=arr[i];
+            arr[i]=arr[size-1-i];
+            arr[size-1-i]=temp;
+        }
+
+        if(x>0) {
+            //reversing first k values
+            for (int i = 0; i < k / 2; i++) {
+                int temp = arr[i];
+                arr[i] = arr[k - i - 1];
+                arr[k - i - 1] = temp;
+            }
+
+            //reversing remaining values
+            int i = k;
+            int j = size - 1;
+            while (i < j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
+        } else if (x<0) {
+            {int i=k-1; int j=size-1;
+           while(i<j){
+               int temp=arr[i];
+               arr[i]=arr[j];
+               arr[j]=temp;
+               i++; j--;
+           }}
+           int i=0; int j=size-1-k;
+           while(i<j){
+               int temp=arr[i];
+               arr[i]=arr[j];
+               arr[j]=temp;
+               i++; j--;
+           }
+        }
+        for (int nums:arr) {
+            System.out.print(nums+" ");
+        }
+        scanner.close();
+    }
+}
