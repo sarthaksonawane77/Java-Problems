@@ -1,0 +1,16 @@
+public class practice {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter nth number");
+        int n = scanner.nextInt();
+        int sum=0;
+        int SUM = n*(n+1)/2;
+        int[] arr = new int[n];
+        System.out.println("Enter Elements of Array");
+        for (int j = 0; j < n-1; j++) {
+            arr[j] = scanner.nextInt();
+            sum+=arr[j];
+        }
+            System.out.println("Missing number is: "+ (SUM-sum));
+    }
+}
