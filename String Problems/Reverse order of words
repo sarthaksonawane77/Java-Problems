@@ -1,0 +1,19 @@
+class Main {
+    public static String reverseWord(String s) {
+        String[] words=s.trim().split(" ");
+        int left=0; int right=words.length-1;
+        
+        while(left<right){
+            String temp = words[right];
+            words[right]=words[left];
+            words[left]=temp;
+            left++;right--;
+        }
+        return String.join(" ", words);
+        }
+    
+    public static void main(String[] args){
+        String s= "Hello world";
+        System.out.println(reverseWord(s));
+    }
+}
