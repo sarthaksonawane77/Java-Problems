@@ -1,0 +1,27 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int startRow=0; int endRow=matrix.length-1;
+        while(startRow<=endRow){
+            int mid=startRow + (endRow-startRow)/2;
+            if(matrix[mid][0]<=target && target<=matrix[mid][matrix[0].length-1]){
+                return searchInRow(matrix, target, mid);
+            }
+            else if(target>matrix[mid][matrix[0].length-1]) startRow=mid+1;
+            else endRow = mid-1;
+        }
+        return false;
+    }
+
+    public boolean searchInRow(int[][] matrix, int target, int mid){
+        int st=0; int end = matrix[0].length-1;
+        while(st<=end){
+            int Mid=st+(end-st)/2;
+            if(target==matrix[mid][Mid]){
+                return true;
+            }
+            else if (target> matrix[mid][Mid]) st=Mid+1;
+            else end=Mid-1;
+            }
+            return false;
+    }
+}
