@@ -1,0 +1,14 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for(i<){
+            int colStart=0; int colEnd=matrix[i].length-1;
+            while(colStart<=colEnd){
+                int mid=colStart + (colEnd-colStart)/2;
+                if(matrix[i][mid]==target) return true;
+                else if(matrix[i][mid]<target) colStart=mid+1;
+                else colEnd=mid-1;
+            }
+        }
+        return false;
+    }
+}
