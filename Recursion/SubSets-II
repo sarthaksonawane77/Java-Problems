@@ -1,0 +1,17 @@
+void rec(int[] nums, int i, List<Integer> l1, List<List<Integer>> res) {
+    if (i == nums.length) {
+        res.add(new ArrayList<>(l1));
+        return;
+    }
+
+    // 1. Choose nums[i]
+    l1.add(nums[i]);
+    rec(nums, i + 1, l1, res);
+    l1.remove(l1.size() - 1);
+
+    // 2. Skip nums[i] + skip all duplicates of nums[i]
+    while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+        i++;
+    }
+    rec(nums, i + 1, l1, res);
+}
