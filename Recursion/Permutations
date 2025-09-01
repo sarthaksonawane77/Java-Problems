@@ -1,0 +1,31 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> l = new ArrayList<>();
+        rec(nums,0,l);
+        return l;
+
+    }
+
+    public static void rec(int[] nums,int idx,List<List<Integer>> l){
+    if(idx==nums.length){
+        List<Integer> l1= new ArrayList<>();
+        for(int num:nums){
+            l1.add(num);
+        }
+        l.add(l1);
+        return;
+    }
+        
+        for(int i=idx;i<nums.length;i++){
+            int temp=nums[i];
+            nums[i]=nums[idx];
+            nums[idx]=temp;
+
+            rec(nums,idx+1,l);
+
+            int k=nums[i];
+            nums[i]=nums[idx];
+            nums[idx]=k; 
+        }
+    }
+}
