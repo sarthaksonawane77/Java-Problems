@@ -1,0 +1,58 @@
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+     List<List<String>> l = new ArrayList<>();
+     char[][] board = new char[n][n];
+      for(int i=0;i<n;i++){
+          for(int j=0;j<n;j++){
+                    board[i][j]='.';
+                }
+      }
+     rec(board,n,0,l);
+     return l;
+    
+    }
+    
+    public static void rec(char[][] board,int n,int col,List<List<String>> l){
+        if(col==n){
+            List<String> l1 = new ArrayList<>();
+            for(int i=0;i<n;i++){
+                String s="";
+                for(int j=0;j<n;j++){
+                    s+=(board[i][j]);
+                }
+                 l1.add(s);
+            }
+            l.add(l1);
+            return;
+        }
+    
+        for(int i=0;i<n;i++){
+            if(isValid(i,col,board,n)){
+                board[i][col]='Q';
+                rec(board,n,col+1,l);
+                board[i][col]='.';
+            }
+        }
+        
+    }
+    
+    public static boolean isValid(int row,int col,char[][] board, int n){
+        int i=row; int j=col;
+        while(j>=0){
+            if(board[row][j]=='Q') return false;
+            j--;
+        }
+        j=col;
+        while(j>=0 && i>=0){
+            if(board[i][j]=='Q')return false;
+            i--; j--;
+        }
+        j=col; i=row;
+        while(i<n && j>=0){
+            if(board[i][j]=='Q')return false;
+            i++; j--;
+        }
+        return true;
+    }
+}
+
