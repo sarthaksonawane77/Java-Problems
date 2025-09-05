@@ -1,0 +1,70 @@
+class Solution {
+    public void solveSudoku(char[][] board) {
+        int row=0; int col=0;
+        rec(board,0,0);
+    }
+
+    public static boolean rec(char[][] board, int row, int col){
+        if(row==9){
+            return true;
+        }
+        if(col==9){
+            return rec(board,row+1,0);
+        }
+    
+            if(board[row][col]=='.'){
+                int k=1;
+                while(k<=9){
+                if(isValid(k,row,col,board)){
+                    board[row][col]=(char)(k+'0');
+                    if(rec(board,row,col+1)) return true;
+                    board[row][col]='.';                  
+                }
+                k++;
+            }
+            return false;
+        }
+        else{
+           return rec(board,row,col+1);
+        }
+    }
+
+
+    public static boolean isValid(int k, int row, int col, char[][]board){
+        int l=0;
+        //horizontal check
+        while(l<9 ){
+            if(board[row][l]==(char)(k+'0')){
+                return false;
+            }
+            l++;
+        }
+
+        //vertical check
+        int m=0;
+        while(m<9){
+            if(board[m][col]==(char)(k+'0')){
+                return false;
+            }
+            m++;
+        }
+
+        //grid check
+        int gridRow = (row/3)*3;
+        int r= gridRow;
+        int gridCol = (col/3)*3;
+        int c= gridCol;
+        while(gridRow<(r+3)){
+            gridCol=c;
+            while(gridCol<c+3){
+                if(board[gridRow][gridCol]==(char)(k+'0')){
+                    return false;
+                }
+                gridCol++;
+            }
+            gridRow++;
+        }
+
+        return true;
+     }
+    }
