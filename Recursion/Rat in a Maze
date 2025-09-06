@@ -1,0 +1,46 @@
+class Solution {
+    public ArrayList<String> ratInMaze(int[][] maze) {
+    ArrayList<String> l1 = new ArrayList<>();
+    int len = maze.length;
+    String s="";
+     maze[0][0]=0;
+    rec(maze,l1,len,0,0,s);
+    return l1;
+    }
+    
+    public static void rec(int[][] maze, ArrayList<String> l1,int len,int row,int col,String s){
+        if(row==len-1 && col==len-1){
+            l1.add(s);
+            return;
+            }
+            
+         //Down Check
+       if(row+1<len && maze[row+1][col]==1){
+           maze[row+1][col]=0;
+           rec(maze,l1,len,row+1,col,s+'D');
+           maze[row+1][col]=1;
+       }
+       
+        //Left Check
+       if(col-1>=0 && maze[row][col-1]==1){
+           maze[row][col-1]=0;
+           rec(maze,l1,len,row,col-1,s+'L');
+           maze[row][col-1]=1;
+        }
+      
+        //Right check
+       if( col+1<len && maze[row][col+1]==1){
+           maze[row][col+1]=0;
+           rec(maze,l1,len,row,col+1,s+'R');
+           maze[row][col+1]=1;
+       }
+      
+       //Up Check
+       if(row-1>=0 &&maze[row-1][col]==1){
+           maze[row-1][col]=0;
+           rec(maze,l1,len,row-1,col,s+'U');
+           maze[row-1][col]=1;
+       }
+
+    }
+}
