@@ -1,0 +1,36 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> l = new ArrayList<>();
+        List<String> l1= new ArrayList<>();
+         rec(s,l,l1);
+         return l;
+    }
+
+    public static void rec(String s, List<List<String>> l,List<String> l1){
+       if(s.length()==0){
+        l.add( new ArrayList<>(l1));
+        return;
+       }
+
+        for(int i=0;i<s.length();i++){
+        String part = s.substring(0,i+1);
+        if(isValid(part)){
+            l1.add(part);
+             rec(s.substring(i+1),l,l1);
+             l1.remove(l1.size()-1);
+        }
+       
+        }
+    }
+    public static boolean isValid(String part){
+        int start =0; int End = part.length()-1;
+        while(start<End){
+            if(part.charAt(start)!=part.charAt(End)){
+                return false;
+            }
+            start++;
+            End--;
+        }
+        return true;
+    }
+}
