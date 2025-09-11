@@ -1,0 +1,23 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        String[] arr={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> l = new ArrayList<>();
+        String word ="";
+         if (digits == null || digits.length() == 0) {
+            return l;
+        }
+        rec(digits,arr,l,word);
+        return l;
+    }
+    public static void rec(String digits, String[] arr, List<String> l, String word){
+        if(digits.length()==0){
+            l.add(word);
+            return;
+        }
+        
+        String key = arr[digits.charAt(0)-48];
+        for(int i=0;i<key.length();i++){
+            rec(digits.substring(1),arr,l,word+key.charAt(i));
+        }
+    }
+}
