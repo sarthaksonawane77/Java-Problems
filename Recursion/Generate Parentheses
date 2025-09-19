@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> l = new ArrayList<>();
+        String s="";
+        rec(n,l,s,0,0);
+        return l;
+    }
+
+    public static void rec(int n, List<String> l, String s, int open, int close){
+        if(close==n && open==n){
+            l.add(s);
+            return;
+        }
+
+        if(open<n)
+        rec(n,l,s+"(",open+1,close);
+        if(close<open)
+        rec(n,l,s+")",open,close+1);
+
+
+    }
+}
