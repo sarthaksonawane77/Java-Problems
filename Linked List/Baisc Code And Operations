@@ -1,0 +1,153 @@
+class Node{
+    int data;
+    Node next;
+    
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+
+class LL{
+    Node head;
+    Node tail;
+    int size;
+    
+    public void insertLast(int data){
+        Node node = new Node(data);
+        if(head==null){
+            head=node;
+            tail=node;
+        }
+        else{
+            tail.next=node;
+            tail=node;
+        }
+        size++;
+    }
+    public void insertFirst(int data){
+        Node node = new Node(data);
+        if(head==null){
+            head=node;
+            tail=node;
+        }
+        else{
+            node.next=head;
+            head=node;
+        }
+        size++;
+    }
+    public void insertAt(int data,int index){
+        if(index>size || index<0){
+            System.out.println("INVALID INDEX!!");
+            return;
+        }
+       if(index==0){
+           insertFirst(data);
+           return;
+       }  
+       else if(index==size){
+           insertLast(data);
+           return;
+       else{
+           Node node = new Node(data);
+           Node prev=head;
+           while(index>1){
+               prev=prev.next;
+               index--;
+           }
+           node.next=prev.next;
+           prev.next=node;
+           size++;
+       }
+    }
+}
+    public void display(){
+        Node current=head;
+        System.out.println(current.data);
+        while(current.next!=null){
+            current=current.next;
+            System.out.println(current.data);
+        }
+    }
+    public void deleteFirst(){
+        if(head==null){
+            tail=null;
+            System.out.println("List is Empty");
+            return;
+        }
+            
+        //if only 1 element in list
+        if(head==tail){
+            System.out.println(head.data);
+            head=null;
+            tail=null;
+            size--;
+        }
+        else{
+            System.out.println(head.data);
+            head=head.next;
+            size--;
+        }
+    }
+    public void deleteLast(){
+            if(head==null){
+            System.out.println("List is Empty");
+            return;
+        }
+        node temp=head;
+        if(head.next==null){
+            head=null;
+            tail=null;
+            size--;
+            return;
+        }
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        tail=temp;
+        tail.next=null;
+        size--;
+    }
+    
+    public void deleteAt(int value, int index){
+        if(head==null)return;
+        if(index<0||index>=size)return;
+        if(index==0){
+            deleteFirst();
+        }
+        else if(index==size-1){
+            deleteLast();
+        }
+        else{
+            Node temp=head;
+            int i=0;
+            while(i<index-1){
+                temp=temp.next;
+                i++;
+            }
+        temp.next=temp.next.next;
+        }
+        size--;
+    }
+}
+class Main {
+    public static void main(String[] args) {
+      LL list= new LL();
+      list.insertLast(1);
+      list.insertLast(2);
+      list.insertLast(3);
+      list.insertLast(4);
+      list.insertLast(5);
+    list.display();
+    list.insertFirst(0);
+    list.insertAt(9,3);
+    list.display();
+    list.deleteFirst();
+    list.deleteLast();
+    list.display();
+    list.deleteAt(2);
+    list.display();
+      
+    }
+}
