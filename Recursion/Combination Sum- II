@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+         Arrays.sort(candidates);
+         List<List<Integer>> l = new ArrayList<>();
+         List<Integer> l1 = new ArrayList<>();
+         rec(candidates,target,l,l1,0,0);
+         return l;
+    }
+
+public static void rec(int[] candidates, int target, List<List<Integer>> l, List<Integer> l1, int i, int sum){
+        if(sum==target){
+            l.add(new ArrayList<>(l1));
+            return;
+        }
+        if(sum>target|| i>=candidates.length){
+            return;
+        }
+        
+        l1.add(candidates[i]);
+        rec(candidates,target,l,l1,i+1,sum+candidates[i]);
+        l1.remove(l1.size()-1);
+
+        int j=i+1;
+        while(j<candidates.length && candidates[j]==candidates[i])j++;
+        rec(candidates,target,l,l1,j,sum);
+        } 
+}
