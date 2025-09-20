@@ -1,0 +1,30 @@
+ public void insertRec(int data, int index, int i,Node temp){
+        if(index<0 ||index>size){
+            System.out.println("Invalid Index!!");
+            return;
+        }
+        if(index==0){
+            Node node = new Node(data);
+            node.next=head;
+            head=node;
+            if(tail==null)tail=node;
+            size++;
+            return;
+        }
+        if(index==size){
+            Node node = new Node(data);
+            tail.next=node;
+            tail=node;
+            size++;
+            return;
+        }
+        if(i==index-1){
+             Node node = new Node(data);
+            node.next=temp.next;
+            temp.next=node;
+            size++;
+            return;
+        }
+        insertRec(data,index,i+1,temp.next);
+    }
+}
