@@ -1,0 +1,38 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head==null||head.next==null)return true;
+        if(head.next.next==null){
+            if(head.val==head.next.val)return true;
+            return false;
+        }
+       ListNode current=head; ListNode next=head; ListNode bmid=null;
+        //finding middle
+        while(next!=null&&next.next!=null){
+            bmid=current;
+            current=current.next;
+            next=next.next.next;
+        }
+        //reversing sub linkedlist
+        ListNode prev=null;
+        next=current.next;
+        while(current.next!=null){
+            current.next=prev;
+            prev=current;
+            current=next;
+            next=next.next;
+        }   
+        current.next=prev;
+        bmid.next=current;
+        //detecting palindrome
+        ListNode st=head;
+        ListNode mid =current;
+        while(st!=mid&&current!=null){
+            if(current.val!=st.val){
+                return false;
+            }
+            current=current.next;
+            st=st.next;
+        }
+        return true;
+    }
+}
