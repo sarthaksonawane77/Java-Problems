@@ -1,0 +1,45 @@
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+
+        if(head==null||head.next==null)return head;
+        if(left==right)return head;
+        ListNode bleft=head; ListNode bright=head; int temp;
+        ListNode L=head; ListNode R=head;
+        //place pointer before left and at right
+        if(left==1){
+            bleft=null;
+            L=head;
+        }else{
+        temp=left;
+        while(temp>2){
+            bleft=bleft.next;
+            temp--;   
+        }
+        L= bleft.next;
+    }
+        //place pointer at right and after right
+        temp=right;
+        while(temp>1){
+            R=R.next;
+            temp--;
+        }
+        bright=R.next;
+
+        ListNode prev=bright;
+        ListNode current=L;
+        ListNode next=current.next;
+
+        while(current.next!=bright){
+            current.next=prev;
+            prev=current;
+            current=next;
+            next=current.next;
+        }
+        current.next=prev;
+
+        L.next=bright;
+        if(bleft==null){return R;}
+        bleft.next=R;
+        return head;
+  }
+}
